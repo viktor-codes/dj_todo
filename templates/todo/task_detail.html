@@ -1,0 +1,29 @@
+{% extends 'includes/base.html' %}
+
+
+{% block content %}
+<div class="col-9">
+    <div class="card mb-2">
+        <div class="card-body">
+            <h5 class="card-title">{{ task.content }}</h5>
+            <p class="text-sm text-muted">{{ task.is_done }}</p>
+
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Created At:</strong> {{ task.created_at }}</li>
+                <li class="list-group-item"><strong>Deadline:</strong> {{ task.deadline }}</li>
+                <li class="list-group-item"><strong>Tags:</strong> {{ task.tags }}</li>
+            </ul>
+            <div class="mt-3">
+                <a href="{% url 'task-update' pk=task.id %}" class="btn btn-primary">Edit Task</a>
+                <a href="{% url 'task-delete' pk=task.id %}" class="btn btn-danger">Delete Task</a>
+
+                {% if not task.is_done %}
+                <button class="btn btn-success">Complete</button>
+                {% else %}
+                <button class="btn btn-secondary">Undo</button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
