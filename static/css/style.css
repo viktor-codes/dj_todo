@@ -1,0 +1,8 @@
+.fixed {
+    position: fixed;
+    width: 25%;
+}
+
+.tasks {
+    margin-left: 25%;
+}

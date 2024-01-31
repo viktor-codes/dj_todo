@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views import generic
+from django.views import generic, View
 from .models import Task, Tag
 from .forms import TaskForm
+from django.urls import reverse_lazy
 
 
 def index(request):
@@ -36,12 +37,12 @@ class TaskCreateView(generic.CreateView):
 class TaskUpdateView(generic.UpdateView):
     model = Task
     form_class = TaskForm
-    success_url = "task-list"
+    success_url = reverse_lazy("task-list")
 
 
 class TaskDeleteView(generic.DeleteView):
     model = Task
-    success_url = "task-list"
+    success_url = reverse_lazy("task-list")
 
 
 class TagListView(generic.ListView):
@@ -57,25 +58,26 @@ class TagDetailView(generic.DetailView):
 class TagCreateView(generic.CreateView):
     model = Tag
     fields = "__all__"
-    success_url = "tag-list"
+    success_url = reverse_lazy("tag-list")
 
 
 class TagUpdateView(generic.UpdateView):
     model = Tag
     fields = "__all__"
-    success_url = "tag-list"
+    success_url = reverse_lazy("tag-list")
 
 
 class TagDeleteView(generic.DeleteView):
     model = Tag
-    success_url = "tag-list"
+    success_url = reverse_lazy("tag-list")
 
 
-def toggle_task_done(request, task_id):
+class TaskToggleDoneView(View):
+    def post(self, request, *args, **kwargs):
+        task_id = kwargs.get('pk')
+        task = get_object_or_404(Task, id=task_id)
 
-    task = get_object_or_404(Task, id=task_id)
+        task.is_done = not task.is_done
+        task.save()
 
-    task.is_done = not task.is_done
-
-    task.save()
-    return redirect('task-list')
+        return redirect('task-list')

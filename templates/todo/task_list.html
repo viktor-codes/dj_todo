@@ -2,7 +2,7 @@
 
 
 {% block content %}
-<div class="col-9">
+<div class="col-9 tasks">
     <h1 class="d-flex justify-content-between">
         To Do List
         <a href="{% url 'task-create' %}" class="ms-auto">add new</a>
@@ -41,9 +41,15 @@
                 <a href="{% url 'task-delete' pk=task.id %}" class="btn btn-danger">Delete Task</a>
 
                 {% if not task.is_done %}
-                <a href="{% url 'toggle-task-done' task.id %}" class="btn btn-success">Complete</a>
+                    <form action="{% url 'toggle-task-done' task.id %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-success">Complete</button>
+                    </form>
                 {% else %}
-                <a href="{% url 'toggle-task-done' task.id %}" class="btn btn-secondary">Undo</a>
+                    <form action="{% url 'toggle-task-done' task.id %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-secondary">Undo</button>
+                    </form>
                 {% endif %}
             </div>
         </div>

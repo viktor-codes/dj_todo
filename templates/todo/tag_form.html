@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="col-9">
+<div class="col-9 tasks">
     <h1>{{ object|yesno:"Update,Create" }} Project</h1>
     <form action="" method="post" novalidate>
         {% csrf_token %}
