@@ -2,10 +2,10 @@
 
 
 {% block content %}
-    <div class="col-9">
-        <h1>
+    <div class="col-9 tasks">
+        <h1 class="d-flex justify-content-between">
             To Do List
-            <a href="" class="me-auto">add task</a>
+            <a href="{% url 'task-create' %}">add new</a>
         </h1>
         
         {% for task in tasks %}
