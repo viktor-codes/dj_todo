@@ -1,4 +1,3 @@
-# tests.py
 from django.test import TestCase
 from django.urls import reverse
 from todo.models import Tag, Task
