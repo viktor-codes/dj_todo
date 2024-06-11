@@ -14,7 +14,7 @@ The ToDo Web Application is a simple and efficient task management system built 
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/todo-web-app.git
+    git clone https://github.com/viktor-codes/dj_todo.git
     ```
 
 2. Install dependencies:
@@ -35,7 +35,7 @@ The ToDo Web Application is a simple and efficient task management system built 
     python manage.py runserver
     ```
 
-5. Access the application at [http://localhost:8000/](http://127.0.0.1:8000/)
+5. Access the application at [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
 ## Usage
 
