@@ -1,0 +1,14 @@
+{% extends "includes/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="col-9 tasks">
+    <h1>{{ object|yesno:"Update,Create" }} Project</h1>
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {{ form|crispy }}
+        <a href="{% url 'tag-list' %}" class="btn btn-secondary">Get Back</a>
+        <input type="submit" value="Submit" class="btn btn-primary">
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'includes/base.html' %}
+
+
+{% block content %}
+<div class="col-9 tasks">
+    <h1 class="d-flex justify-content-between">
+        Tags
+        <a href="{% url 'tag-create' %}" class="ms-auto">add tag</a>
+    </h1>
+
+    {% for tag in tag_list %}
+    <div class="card mb-2">
+        <div class="card-body">
+            <h5 class="card-title d-flex justify-content-between">
+                <a href="{% url 'tag-detail' pk=tag.id %}">
+                    {{ tag.name }}
+                </a>
+                <div>
+                    <a href="{% url 'tag-update' pk=tag.id %}" class="btn btn-sm btn-primary">Edit Tag</a>
+                    <a href="{% url 'tag-delete' pk=tag.id %}" class="btn btn-sm btn-danger">Delete Tag</a>
+                </div>
+            </h5>
+            
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+{% endblock content %}
